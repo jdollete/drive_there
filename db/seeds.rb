@@ -23,6 +23,6 @@ vehicle1 = Vehicle.create(year: "2011", make: "Honda", model: "Civic", color: "B
 vehicle2 = Vehicle.create(year: "2012", make: "Honda", model: "Civic", color: "Black", serial_number: 123911, current_location: "Richmond, Va", category_id: category3.id)
 vehicle3 = Vehicle.create(year: "2013", make: "Honda", model: "Civic", color: "Black", serial_number: 123912, current_location: "Richmond, Va", category_id: category3.id)
 
-reserved1 = ReservedDate.create(start_date: "2017/05/01", end_date: "2017/05/10", reservation_id: 1, vehicle_id: 1)
+reserved1 = ReservedDate.create(start_date: "2017/05/01", end_date: "2017/05/10", reservation_id: 1, vehicle_id: 1, range_date: ("2017/05/01".to_date.."2017/05/10".to_date).map{ |date| date.strftime("%b %d, %Y") })
 reserved2 = ReservedDate.create(start_date: "2017/06/01", end_date: "2017/06/10", reservation_id: reservation2.id, vehicle_id: vehicle2.id)
 reserved3 = ReservedDate.create(start_date: "2017/05/20", end_date: "2017/05/25", reservation_id: reservation3.id, vehicle_id: vehicle3.id)
