@@ -7,4 +7,8 @@ class ReservedDate < ApplicationRecord
     def self.availability
       (reserved.start_date.to_date..reserved.end_date.to_date).map{ |date| date.strftime("%b %d, %Y") }
     end
+
+    def date_range
+
+    end
 end
