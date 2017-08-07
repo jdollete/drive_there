@@ -2,10 +2,6 @@ user1 = User.create(name: Faker::GameOfThrones.character, email: Faker::Internet
 user2 = User.create(name: Faker::GameOfThrones.character, email: Faker::Internet.email, location: "Prince George, VA")
 user3 = User.create(name: Faker::GameOfThrones.character, email: Faker::Internet.email, location: "Jersey City, NJ")
 
-reservation1 = Reservation.create(user_id: user1.id, start_date: "2017/05/01", end_date: "2017/05/10", location: user1.location)
-reservation2 = Reservation.create(user_id: user2.id, start_date: "2017/06/01", end_date: "2017/06/10", location: user2.location)
-reservation3 = Reservation.create(user_id: user3.id, start_date: "2017/05/20", end_date: "2017/05/25", location: user3.location)
-
 category1 = Category.create(vehicle_type: "SUV")
 category2 = Category.create(vehicle_type: "Truck")
 category3 = Category.create(vehicle_type: "Coupe")
@@ -22,6 +18,10 @@ vehicle3 = Vehicle.create(year: "2013", make: "Honda", model: "Civic", color: "B
 category_vehicle1 = CategoriesVehicle.create(vehicle_id: vehicle1.id, category_id: category3.id)
 category_vehicle2 = CategoriesVehicle.create(vehicle_id: vehicle2.id, category_id: category3.id)
 category_vehicle3 = CategoriesVehicle.create(vehicle_id: vehicle3.id, category_id: category3.id)
+
+reservation1 = Reservation.create(user_id: user1.id, start_date: "2017/05/01", end_date: "2017/05/10", location: user1.location, vehicle_id: vehicle1.id)
+reservation2 = Reservation.create(user_id: user2.id, start_date: "2017/06/01", end_date: "2017/06/10", location: user2.location, vehicle_id: vehicle2.id)
+reservation3 = Reservation.create(user_id: user3.id, start_date: "2017/05/20", end_date: "2017/05/25", location: user3.location, vehicle_id: vehicle3.id)
 
 extra1 = Extra.create(equipment: "Ez Pass", cost: 10.00)
 extra2 = Extra.create(equipment: "Trailer", cost: 100.00)
