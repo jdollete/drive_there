@@ -6,8 +6,7 @@ class CreateVehicles < ActiveRecord::Migration[5.0]
       t.string :model, null:false
       t.string :color, null:false
       t.integer :serial_number, null: false
-      t.string :current_location, null: false
-      t.references :category, foreign_key: true, index:true
+      t.references :location, foreign_key: true, index:true
 
       t.timestamps(null: false)
     end

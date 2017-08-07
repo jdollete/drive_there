@@ -1,0 +1,2 @@
+class ExtrasReservation < ApplicationRecord
+end

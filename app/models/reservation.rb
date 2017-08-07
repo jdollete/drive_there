@@ -1,7 +1,6 @@
 class Reservation < ApplicationRecord
   belongs_to :user
-  has_many :reserved_date
-  has_many :vehicle, through: :reserved_date
+  has_and_belongs_to_many :extras, through: :extras_reservation
 
 
 end
