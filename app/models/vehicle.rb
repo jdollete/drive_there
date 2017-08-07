@@ -1,8 +1,6 @@
 class Vehicle < ApplicationRecord
-  belongs_to :categories
-  has_many :reserved_dates
-  has_many :reservations, through: :reserved_dates
+  has_and_belongs_to_many :categories, through: :categories_vehicle
 
-  validates_presence_of :year, :make, :model, :color, :current_location, :serial_number
+  validates_presence_of :year, :make, :model, :color, :serial_number
   validates_uniqueness_of :serial_number
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806033655) do
+ActiveRecord::Schema.define(version: 20170807221601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,26 +21,50 @@ ActiveRecord::Schema.define(version: 20170806033655) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.string   "additional_equipment"
-    t.boolean  "completed",            default: false
-    t.float    "total_price"
-    t.integer  "user_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
+  create_table "categories_vehicles", force: :cascade do |t|
+    t.integer  "vehicle_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_categories_vehicles_on_category_id", using: :btree
+    t.index ["vehicle_id"], name: "index_categories_vehicles_on_vehicle_id", using: :btree
   end
 
-  create_table "reserved_dates", force: :cascade do |t|
-    t.date     "start_date",     null: false
-    t.date     "end_date",       null: false
+  create_table "extras", force: :cascade do |t|
+    t.string   "equipment",  null: false
+    t.float    "cost",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "extras_reservations", force: :cascade do |t|
+    t.integer  "extra_id"
     t.integer  "reservation_id"
-    t.integer  "vehicle_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "range_date"
-    t.index ["reservation_id"], name: "index_reserved_dates_on_reservation_id", using: :btree
-    t.index ["vehicle_id"], name: "index_reserved_dates_on_vehicle_id", using: :btree
+    t.index ["extra_id"], name: "index_extras_reservations_on_extra_id", using: :btree
+    t.index ["reservation_id"], name: "index_extras_reservations_on_reservation_id", using: :btree
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "address",    null: false
+    t.string   "city",       null: false
+    t.string   "state",      null: false
+    t.string   "zipcode",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.string   "location",                    null: false
+    t.date     "start_date",                  null: false
+    t.date     "end_date",                    null: false
+    t.boolean  "completed",   default: false
+    t.float    "total_price"
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,20 +76,21 @@ ActiveRecord::Schema.define(version: 20170806033655) do
   end
 
   create_table "vehicles", force: :cascade do |t|
-    t.string   "year",             null: false
-    t.string   "make",             null: false
-    t.string   "model",            null: false
-    t.string   "color",            null: false
-    t.integer  "serial_number",    null: false
-    t.string   "current_location", null: false
-    t.integer  "category_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["category_id"], name: "index_vehicles_on_category_id", using: :btree
+    t.string   "year",          null: false
+    t.string   "make",          null: false
+    t.string   "model",         null: false
+    t.string   "color",         null: false
+    t.integer  "serial_number", null: false
+    t.integer  "location_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["location_id"], name: "index_vehicles_on_location_id", using: :btree
   end
 
+  add_foreign_key "categories_vehicles", "categories"
+  add_foreign_key "categories_vehicles", "vehicles"
+  add_foreign_key "extras_reservations", "extras"
+  add_foreign_key "extras_reservations", "reservations"
   add_foreign_key "reservations", "users"
-  add_foreign_key "reserved_dates", "reservations"
-  add_foreign_key "reserved_dates", "vehicles"
-  add_foreign_key "vehicles", "categories"
+  add_foreign_key "vehicles", "locations"
 end
