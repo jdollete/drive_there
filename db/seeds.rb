@@ -21,7 +21,9 @@ category_vehicle3 = CategoriesVehicle.create(vehicle_id: vehicle3.id, category_i
 
 reservation1 = Reservation.create(user_id: user1.id, start_date: "2017/05/01", end_date: "2017/05/10", location: user1.location, vehicle_id: vehicle1.id)
 reservation2 = Reservation.create(user_id: user2.id, start_date: "2017/06/01", end_date: "2017/06/10", location: user2.location, vehicle_id: vehicle2.id)
-reservation3 = Reservation.create(user_id: user3.id, start_date: "2017/05/20", end_date: "2017/05/25", location: user3.location, vehicle_id: vehicle3.id)
+reservation3 = Reservation.create(user_id: user3.id, start_date: "2017/06/20", end_date: "2017/06/25", location: user3.location, vehicle_id: vehicle3.id)
+reservation4 = Reservation.create(user_id: user3.id, start_date: "2017/08/20", end_date: "2017/08/25", location: user3.location, vehicle_id: vehicle3.id)
+reservation5 = Reservation.create(user_id: user3.id, start_date: "2017/09/20", end_date: "2017/09/25", location: user3.location, vehicle_id: vehicle3.id)
 
 extra1 = Extra.create(equipment: "Ez Pass", cost: 10.00)
 extra2 = Extra.create(equipment: "Trailer", cost: 100.00)
